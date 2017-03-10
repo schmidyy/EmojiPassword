@@ -58,7 +58,7 @@ class SecondViewController: UIViewController {
                 }
             }
             if count == 4 {
-                textLabel.text = "Correct!"
+                textLabel.text = "Correct!!"
                 for i in slots{
                     i.image = #imageLiteral(resourceName: "smile-glasses")
                 }
