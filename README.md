@@ -1,4 +1,4 @@
 # EmojiPassword
-Quick 4-digit Emoji password generator and checker
+Quick random 4-digit Emoji password generator and tester. 
 
-![IMG](https://i.gyazo.com/5c96c7da8d0451a3aec097d67e77607f.png)
+![IMG](http://i.imgur.com/SPSh1eI.png)
