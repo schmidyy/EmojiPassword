@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EmojiPassword" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +20,421 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Randomly Generated Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0K-bz-Z3X">
+                                <rect key="frame" x="53" y="210" width="268" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7t4-xO-DkC">
+                                <rect key="frame" x="110" y="376" width="155" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <state key="normal" title="Generate">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="generate" destination="BYZ-38-t0r" eventType="touchUpInside" id="14x-M1-qPv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUU-UO-abT">
+                                <rect key="frame" x="110" y="420" width="155" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <state key="normal" title="Save password">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextScreen:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="xKY-dL-HgX"/>
+                                    <segue destination="zjG-b6-xtA" kind="show" identifier="goToVC" id="5dz-GU-6R2"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hidden" translatesAutoresizingMaskIntoConstraints="NO" id="s0N-9u-qbk">
+                                <rect key="frame" x="47" y="273" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hidden" translatesAutoresizingMaskIntoConstraints="NO" id="xRQ-zx-2r9">
+                                <rect key="frame" x="119" y="273" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hidden" translatesAutoresizingMaskIntoConstraints="NO" id="O5j-wf-W4c">
+                                <rect key="frame" x="191" y="273" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hidden" translatesAutoresizingMaskIntoConstraints="NO" id="eKp-7I-r1j">
+                                <rect key="frame" x="263" y="273" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="first" destination="s0N-9u-qbk" id="TjF-9Y-LCK"/>
+                        <outlet property="fourth" destination="eKp-7I-r1j" id="6r7-gG-XaA"/>
+                        <outlet property="generateButton" destination="7t4-xO-DkC" id="nra-Dv-Pyy"/>
+                        <outlet property="nextButton" destination="aUU-UO-abT" id="dGX-ZH-rxQ"/>
+                        <outlet property="second" destination="xRQ-zx-2r9" id="Suk-QD-dAi"/>
+                        <outlet property="third" destination="O5j-wf-W4c" id="63K-xE-3Dp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="qS1-E7-eaD">
+            <objects>
+                <viewController storyboardIdentifier="goToVC" id="zjG-b6-xtA" customClass="SecondViewController" customModule="EmojiPassword" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qht-6l-OV3"/>
+                        <viewControllerLayoutGuide type="bottom" id="9gj-yb-K3P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="D0O-tY-I2B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter your password:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ9-u8-YTi">
+                                <rect key="frame" x="79" y="117" width="216" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trk-gO-xbX">
+                                <rect key="frame" x="35" y="359" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="laughing" image="laughing"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="Hmp-Or-PaL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSZ-Re-6Ss">
+                                <rect key="frame" x="87" y="359" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="tongue" image="tongue"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="TGZ-dS-FUc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pF-pY-6dj">
+                                <rect key="frame" x="139" y="359" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="smile-glasses" image="smile-glasses"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="ywM-yc-0fc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gev-aI-p0K">
+                                <rect key="frame" x="191" y="359" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="surprised" image="surprised"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="y5q-x5-HNj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fg-BB-piz">
+                                <rect key="frame" x="243" y="359" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="smile-halo" image="smile-halo"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="lz6-5E-eAe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPN-U2-vQq">
+                                <rect key="frame" x="295" y="359" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="upsidedown" image="upsidedown"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="UqC-ld-hJe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPm-Oa-gpz">
+                                <rect key="frame" x="35" y="411" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="hmm" image="hmm"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="pVB-8c-apN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kA9-Qc-hvD">
+                                <rect key="frame" x="87" y="411" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="heart-eyes" image="heart-eyes"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="CGi-vS-gfV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GX2-uR-TsO">
+                                <rect key="frame" x="139" y="411" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="tired" image="tired"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="0Yf-gJ-6Zo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9O-bj-DrG">
+                                <rect key="frame" x="191" y="411" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="dizzy"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="sBu-0f-TXj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkG-PH-iB5">
+                                <rect key="frame" x="243" y="411" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="neutral"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="tnG-X1-y7C"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijQ-F5-GVn">
+                                <rect key="frame" x="295" y="411" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="sad"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="ijO-Fl-ea5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flc-m6-Uy1">
+                                <rect key="frame" x="35" y="463" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="uhoh"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="Pxv-rG-liU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaK-am-J9c">
+                                <rect key="frame" x="87" y="463" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="mad"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="VmY-9P-Evl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Am3-PP-NJ8">
+                                <rect key="frame" x="139" y="463" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="ghost"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="cjL-bf-VGS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKd-4f-KVf">
+                                <rect key="frame" x="191" y="463" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="snake"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="kTn-Qy-5oS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRd-2L-Swg">
+                                <rect key="frame" x="243" y="463" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="monkey"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="eE2-c2-s0n"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTS-k7-Bd1">
+                                <rect key="frame" x="295" y="463" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="secret"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="Set-fX-qlT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9f-mY-Rd6">
+                                <rect key="frame" x="35" y="515" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="poop"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="7Co-hT-4Bj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWJ-A9-7p9">
+                                <rect key="frame" x="87" y="515" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="peach"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="i9Y-D4-4mN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwX-rd-6Yg">
+                                <rect key="frame" x="139" y="515" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="eggplant"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="dBJ-gH-1oQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLg-Ek-sjP">
+                                <rect key="frame" x="191" y="515" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="chilli"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="ZPc-s0-bUX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9X-lS-mzs">
+                                <rect key="frame" x="243" y="515" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="hotdog"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="esT-YG-ZXo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZs-WQ-nRa">
+                                <rect key="frame" x="295" y="515" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="fire"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="UCe-vj-LPk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHY-VK-gdO">
+                                <rect key="frame" x="87" y="567" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="bomb"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="SNS-no-2jM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jDX-P9-sSl">
+                                <rect key="frame" x="35" y="567" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="sun"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="h0u-26-Gh0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHY-N0-rXD">
+                                <rect key="frame" x="139" y="567" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="heart"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="y7i-5i-n3E"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15I-oD-GDV">
+                                <rect key="frame" x="191" y="567" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="peace"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="6gP-6V-LOi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AV6-rV-Erv">
+                                <rect key="frame" x="243" y="567" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="money"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="qk6-cm-SMs"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VXm-kZ-o2B">
+                                <rect key="frame" x="45" y="172" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jjQ-wV-YIF">
+                                <rect key="frame" x="121" y="172" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ja1-Mh-kxC">
+                                <rect key="frame" x="193" y="172" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y9k-ap-LjC">
+                                <rect key="frame" x="265" y="172" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EKm-2j-El4">
+                                <rect key="frame" x="45" y="272" width="140" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkPassword:" destination="zjG-b6-xtA" eventType="touchUpInside" id="ivP-AJ-pdb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8L-Ds-i17">
+                                <rect key="frame" x="189" y="272" width="140" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <state key="normal" title="Backspace">
+                                    <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                                <connections>
+                                    <action selector="backspace:" destination="zjG-b6-xtA" eventType="touchUpInside" id="BRc-mK-acG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKa-BO-btR">
+                                <rect key="frame" x="158" y="627" width="58" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="CE7-Cw-T5Y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nH7-Jt-IxC">
+                                <rect key="frame" x="295" y="567" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="alien"/>
+                                <connections>
+                                    <action selector="emojiClicked:" destination="zjG-b6-xtA" eventType="touchUpInside" id="Ryx-jc-NiA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="firstSlot" destination="VXm-kZ-o2B" id="7dz-mU-Zeu"/>
+                        <outlet property="fourthSlot" destination="y9k-ap-LjC" id="xAd-kA-RsF"/>
+                        <outlet property="secondSlot" destination="jjQ-wV-YIF" id="iuV-TL-bTj"/>
+                        <outlet property="textLabel" destination="ZZ9-u8-YTi" id="ncB-Df-ClZ"/>
+                        <outlet property="thirdSlot" destination="Ja1-Mh-kxC" id="9iW-Yy-eRd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n5f-xD-Gah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1045.5999999999999" y="136.28185907046478"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="alien" width="144" height="144"/>
+        <image name="bomb" width="144" height="144"/>
+        <image name="chilli" width="144" height="144"/>
+        <image name="dizzy" width="144" height="144"/>
+        <image name="eggplant" width="144" height="144"/>
+        <image name="fire" width="144" height="144"/>
+        <image name="ghost" width="144" height="144"/>
+        <image name="heart" width="144" height="144"/>
+        <image name="heart-eyes" width="144" height="144"/>
+        <image name="hidden" width="144" height="144"/>
+        <image name="hmm" width="144" height="144"/>
+        <image name="hotdog" width="144" height="144"/>
+        <image name="laughing" width="144" height="144"/>
+        <image name="mad" width="144" height="144"/>
+        <image name="money" width="144" height="144"/>
+        <image name="monkey" width="144" height="144"/>
+        <image name="neutral" width="144" height="144"/>
+        <image name="peace" width="144" height="144"/>
+        <image name="peach" width="144" height="144"/>
+        <image name="poop" width="144" height="144"/>
+        <image name="sad" width="144" height="144"/>
+        <image name="secret" width="144" height="144"/>
+        <image name="smile-glasses" width="144" height="144"/>
+        <image name="smile-halo" width="144" height="144"/>
+        <image name="snake" width="144" height="144"/>
+        <image name="sun" width="144" height="144"/>
+        <image name="surprised" width="144" height="144"/>
+        <image name="tired" width="144" height="144"/>
+        <image name="tongue" width="144" height="144"/>
+        <image name="uhoh" width="144" height="144"/>
+        <image name="upsidedown" width="144" height="144"/>
+    </resources>
 </document>
