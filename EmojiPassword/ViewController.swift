@@ -34,6 +34,7 @@ extension Data {
     }
 }
 
+var start = true
 let UID = "User" + String(format: "%03d", arc4random_uniform(100))
 
 class ViewController: UIViewController {
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
     var timeOutput : String = ""
     var generateCount = 0
     var password : [UIImage] = []
-    var start = true
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
