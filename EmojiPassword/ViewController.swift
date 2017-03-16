@@ -8,24 +8,106 @@
 
 import UIKit
 
+extension String {
+    func appendLineToURL(fileURL: URL) throws {
+        try (self + "\n").appendToURL(fileURL: fileURL)
+    }
+    
+    func appendToURL(fileURL: URL) throws {
+        let data = self.data(using: String.Encoding.utf8)!
+        try data.append(fileURL: fileURL)
+    }
+}
+
+extension Data {
+    func append(fileURL: URL) throws {
+        if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {
+            defer {
+                fileHandle.closeFile()
+            }
+            fileHandle.seekToEndOfFile()
+            fileHandle.write(self)
+        }
+        else {
+            try write(to: fileURL, options: .atomic)
+        }
+    }
+}
+
+let UID = "User" + String(format: "%03d", arc4random_uniform(100))
+
 class ViewController: UIViewController {
-    
-    
     
     @IBOutlet weak var first: UIImageView!
     @IBOutlet weak var second: UIImageView!
     @IBOutlet weak var third: UIImageView!
     @IBOutlet weak var fourth: UIImageView!
+    @IBOutlet weak var fifth: UIImageView!
+    @IBOutlet weak var sixth: UIImageView!
     
     @IBOutlet weak var generateButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    var timeOutput : String = ""
+    var generateCount = 0
     var password : [UIImage] = []
-    
+    var start = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.isHidden = true
+        if start {
+            createWriteDir()
+            start = false
+        }
+        print(UID)
+    }
+    
+    func createWriteDir(){
+        let fileName = "logData"
+        let documentDir = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let fileURL = documentDir.appendingPathComponent(fileName).appendingPathExtension("txt")
+        
+        print("File Path: \(fileURL.path)")
+        
+        let tableTitles = "time, UserID, Action, Event\n"
+        do {
+            try tableTitles.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+        } catch let error as NSError{
+            print("Failed to write log")
+            print(error)
+        }
+    }
+    
+    func addToLog(message: String) {
+        do {
+            let dir: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last! as URL
+            let url = dir.appendingPathComponent("logData.txt")
+            try message.appendLineToURL(fileURL: url as URL)
+            _ = try String(contentsOf: url as URL, encoding: String.Encoding.utf8)
+        }
+        catch {
+            print("Could not write to file")
+        }
+        print(message)
+    }
+    
+    func writeTimeAndDate() -> String {
+        
+        //time, userID, mode (action), event
+        let date = NSDate()
+        let calendar = NSCalendar.current
+        let year = calendar.component(.year, from: date as Date)
+        let month = calendar.component(.month, from: date as Date)
+        let day = calendar.component(.day, from: date as Date)
+        let hour = calendar.component(.hour, from: date as Date)
+        let minutes = calendar.component(.minute, from: date as Date)
+        let seconds = calendar.component(.second, from: date as Date)
+        
+        let timeString = ("\(String(format: "%02d", hour)):\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))")
+        let dateString = ("\(String(format: "%02d", year))-\(String(format: "%02d", month))-\(String(format: "%02d", day))")
+        
+        return dateString + " " + timeString
     }
     
     func loadEmojis() -> [UIImage]{
@@ -65,8 +147,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func generate() {
+    
         var emojis = loadEmojis()
-
+        generateCount += 1
         let indexFirst = Int(arc4random_uniform(UInt32(emojis.count)))
         first.image = emojis[indexFirst]
         
@@ -79,13 +162,18 @@ class ViewController: UIViewController {
         let indexFourth = Int(arc4random_uniform(UInt32(emojis.count)))
         fourth.image = emojis[indexFourth]
         
+        let indexFifth = Int(arc4random_uniform(UInt32(emojis.count)))
+        fifth.image = emojis[indexFifth]
+        
+        let indexSixth = Int(arc4random_uniform(UInt32(emojis.count)))
+        sixth.image = emojis[indexSixth]
+        
+        addToLog(message: writeTimeAndDate() + ", " + UID + ", generate n.\(generateCount), success")
         nextButton.isHidden = false
-
-
     }
     
     @IBAction func nextScreen(_ sender: UIButton) {
-
+        addToLog(message: writeTimeAndDate() + ", " + UID + ", save, success")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -93,6 +181,8 @@ class ViewController: UIViewController {
         self.password.append(second.image!)
         self.password.append(third.image!)
         self.password.append(fourth.image!)
+        self.password.append(fifth.image!)
+        self.password.append(sixth.image!)
         
         if segue.identifier == "goToVC"{
             if let destination = segue.destination as? SecondViewController {

@@ -31,6 +31,24 @@ class EmojiPasswordUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        let generateButton = app.buttons["Generate"]
+        generateButton.tap()
+        generateButton.tap()
+        generateButton.tap()
+        generateButton.tap()
+        generateButton.tap()
+        app.buttons["Save password"].tap()
+        
+        let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element
+        element.children(matching: .button).matching(identifier: "Button").element(boundBy: 5).tap()
+        app.buttons["hmm"].tap()
+        element.children(matching: .button).matching(identifier: "Button").element(boundBy: 19).tap()
+        element.children(matching: .button).matching(identifier: "Button").element(boundBy: 0).tap()
+        app.buttons["Submit"].tap()
+        app.buttons["Reset"].tap()
+        
     }
     
 }
