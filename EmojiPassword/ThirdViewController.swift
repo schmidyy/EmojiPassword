@@ -1,14 +1,17 @@
 //
-//  SecondViewController.swift
+//  ThirdViewController.swift
 //  EmojiPassword
 //
-//  Created by Mat Schmid on 2017-03-08.
+//  Created by Mat Schmid on 2017-03-19.
 //  Copyright © 2017 Mat Schmid. All rights reserved.
 //
 
 import UIKit
+import GameKit
 
-class SecondViewController: UIViewController {
+var iter = 0
+
+class ThirdViewController: UIViewController {
     
     @IBOutlet weak var firstSlot: UIImageView!
     @IBOutlet weak var secondSlot: UIImageView!
@@ -18,10 +21,12 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var sixthSlot: UIImageView!
     
     @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var dataButton: UIButton!
+    @IBOutlet weak var systemLabel: UILabel!
     
     var slots : [UIImageView] = []
     var currSlot: Int = 0
+    //let passArr = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: passwordArray) as! [[UIImage]]
+    let passArr:[[UIImage]] = passwordArray.reversed()
     var pass : [UIImage] = []
     var numFails: Int = 0
 
@@ -103,9 +108,8 @@ class SecondViewController: UIViewController {
             if count == 6 {
                 textLabel.text = "Correct!!!"
                 addToLog(message: writeTimeAndDate() + ", " + UID + ", submit password, success")
-                for i in slots{
-                    i.image = #imageLiteral(resourceName: "smile-glasses")
-                }
+                clear()
+                viewDidLoad()
             }
         }
         else {
@@ -115,7 +119,7 @@ class SecondViewController: UIViewController {
         }
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,6 +129,27 @@ class SecondViewController: UIViewController {
         slots.append(fourthSlot)
         slots.append(fifthSlot)
         slots.append(sixthSlot)
+        
+        iter = iter + 1
+        switch iter {
+        case 1:
+            pass = passArr[0]
+            systemLabel.text = "Bank Account"
+            systemLabel.textColor = UIColor.green
+            
+        case 2:
+            pass = passArr[1]
+            systemLabel.text = "Email"
+            systemLabel.textColor = UIColor.red
+        case 3:
+            pass = passArr[2]
+            systemLabel.text = "Facebook"
+            systemLabel.textColor = UIColor.blue
+        default:
+            pass = passwordArray[0]
+        }
+        
+        
         
     }
 }

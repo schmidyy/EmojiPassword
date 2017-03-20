@@ -36,6 +36,8 @@ extension Data {
 
 var start = true
 let UID = "User" + String(format: "%03d", arc4random_uniform(100))
+var passwordArray : [[UIImage]] = []
+var iteration = 0
 
 class ViewController: UIViewController {
     
@@ -46,8 +48,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var fifth: UIImageView!
     @IBOutlet weak var sixth: UIImageView!
     
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var thirdLabel: UILabel!
+    @IBOutlet weak var fourthLabel: UILabel!
+    @IBOutlet weak var fifthLabel: UILabel!
+    @IBOutlet weak var sixthLabel: UILabel!
+    
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var lbl: UILabel!
+    
+    @IBOutlet weak var systemLabel: UILabel!
+    
     @IBOutlet weak var generateButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    
+    @IBOutlet weak var retest: UIButton!
     
     var timeOutput : String = ""
     var generateCount = 0
@@ -57,11 +73,50 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.isHidden = true
+        retest.isHidden = true
+        
+        iteration = iteration + 1
+        
+        switch iteration {
+        case 1:
+            systemLabel.text = "Facebook"
+            systemLabel.textColor = UIColor.blue
+        case 2:
+            systemLabel.text = "Email"
+            systemLabel.textColor = UIColor.red
+        case 3:
+            systemLabel.text = "Bank Account"
+            systemLabel.textColor = UIColor.green
+        default:
+            generateButton.isHidden = true
+            nextButton.isHidden = true
+            retest.isHidden = false
+            textLabel.isHidden = true
+            systemLabel.text = ""
+            lbl.isHidden = true
+            
+            first.isHidden = true
+            second.isHidden = true
+            third.isHidden = true
+            fourth.isHidden = true
+            fifth.isHidden = true
+            sixth.isHidden = true
+            
+        }
+        
         if start {
             createWriteDir()
             start = false
         }
+        
         print(UID)
+        
+        firstLabel.text = ""
+        secondLabel.text = ""
+        thirdLabel.text = ""
+        fourthLabel.text = ""
+        fifthLabel.text = ""
+        sixthLabel.text = ""
     }
     
     func createWriteDir(){
@@ -184,6 +239,8 @@ class ViewController: UIViewController {
         self.password.append(fourth.image!)
         self.password.append(fifth.image!)
         self.password.append(sixth.image!)
+        
+        passwordArray.append(password)
         
         if segue.identifier == "goToVC"{
             if let destination = segue.destination as? SecondViewController {

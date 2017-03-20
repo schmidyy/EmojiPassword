@@ -15,6 +15,7 @@
 		27351DBA1E70E6740062AAD0 /* EmojiPasswordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27351DB91E70E6740062AAD0 /* EmojiPasswordTests.swift */; };
 		27351DC51E70E6740062AAD0 /* EmojiPasswordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27351DC41E70E6740062AAD0 /* EmojiPasswordUITests.swift */; };
 		27351DDC1E71135E0062AAD0 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27351DDB1E71135E0062AAD0 /* SecondViewController.swift */; };
+		27351DDE1E7F37460062AAD0 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27351DDD1E7F37460062AAD0 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		27351DC41E70E6740062AAD0 /* EmojiPasswordUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPasswordUITests.swift; sourceTree = "<group>"; };
 		27351DC61E70E6740062AAD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27351DDB1E71135E0062AAD0 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		27351DDD1E7F37460062AAD0 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				27351DD21E70E6AF0062AAD0 /* Support */,
 				27351DA61E70E6740062AAD0 /* ViewController.swift */,
 				27351DDB1E71135E0062AAD0 /* SecondViewController.swift */,
+				27351DDD1E7F37460062AAD0 /* ThirdViewController.swift */,
 				27351DA81E70E6740062AAD0 /* Main.storyboard */,
 				27351DAD1E70E6740062AAD0 /* LaunchScreen.storyboard */,
 			);
@@ -275,6 +278,7 @@
 			files = (
 				27351DDC1E71135E0062AAD0 /* SecondViewController.swift in Sources */,
 				27351DA71E70E6740062AAD0 /* ViewController.swift in Sources */,
+				27351DDE1E7F37460062AAD0 /* ThirdViewController.swift in Sources */,
 				27351DA51E70E6740062AAD0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,6 +530,7 @@
 				27351DCB1E70E6740062AAD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27351DCC1E70E6740062AAD0 /* Build configuration list for PBXNativeTarget "EmojiPasswordTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +539,7 @@
 				27351DCE1E70E6740062AAD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27351DCF1E70E6740062AAD0 /* Build configuration list for PBXNativeTarget "EmojiPasswordUITests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +548,7 @@
 				27351DD11E70E6740062AAD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
