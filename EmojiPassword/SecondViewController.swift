@@ -19,11 +19,14 @@ class SecondViewController: UIViewController {
     
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var dataButton: UIButton!
+    @IBOutlet weak var systemLabel: UILabel!
+    @IBOutlet weak var roundLabel: UIButton!
     
     var slots : [UIImageView] = []
     var currSlot: Int = 0
     var pass : [UIImage] = []
     var numFails: Int = 0
+    var completed = false
 
     func addToLog(message: String) {
         do {
@@ -50,6 +53,7 @@ class SecondViewController: UIViewController {
         let minutes = calendar.component(.minute, from: date as Date)
         let seconds = calendar.component(.second, from: date as Date)
         
+        
         let timeString = ("\(String(format: "%02d", hour)):\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))")
         let dateString = ("\(String(format: "%02d", year))-\(String(format: "%02d", month))-\(String(format: "%02d", day))")
         
@@ -61,10 +65,10 @@ class SecondViewController: UIViewController {
             slots[currSlot].image = sender.currentImage
             currSlot += 1
             
-            addToLog(message: writeTimeAndDate() + ", " + UID + ", emoji clicked, success")
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), emoji clicked, success")
         }
         else {
-            addToLog(message: writeTimeAndDate() + ", " + UID + ", emoji clicked, error")
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), emoji clicked, error")
         }
     }
     
@@ -72,10 +76,10 @@ class SecondViewController: UIViewController {
         if currSlot > 0 {
             currSlot -= 1
             slots[currSlot].image = nil
-            addToLog(message: writeTimeAndDate() + ", " + UID + ", deleter char, success")
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), deleter char, success")
         }
         else {
-            addToLog(message: writeTimeAndDate() + ", " + UID + ", delete char, error")
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), delete char, error")
         }
     }
     
@@ -94,27 +98,37 @@ class SecondViewController: UIViewController {
                     count += 1
                 }
                 else{
-                    textLabel.text = "Please try again"
+                    textLabel.text = "Incorect password"
                     self.numFails += 1
-                    addToLog(message: writeTimeAndDate() + ", " + UID + ", submit password attempt #\(numFails), error")
+                    addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), submit password attempt #\(numFails), error")
                     clear()
                 }
             }
             if count == 6 {
                 textLabel.text = "Correct!!!"
-                addToLog(message: writeTimeAndDate() + ", " + UID + ", submit password, success")
+                completed = true
+                addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), submit password, success")
                 for i in slots{
-                    i.image = #imageLiteral(resourceName: "smile-glasses")
+                    i.image = #imageLiteral(resourceName: "Sunglasses")
                 }
+                roundLabel.setTitle("Next Round", for: .normal)
             }
         }
         else {
             self.numFails += 1
             textLabel.text = "Place 6 emojis"
-            addToLog(message: writeTimeAndDate() + ", " + UID + ", submit password attempt #\(numFails), error")
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), submit password attempt #\(numFails), error")
         }
     }
     
+    @IBAction func roundButton(_ sender: UIButton) {
+        if completed {
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), next round, success")
+        }
+        else {
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), skip round, error")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,6 +139,23 @@ class SecondViewController: UIViewController {
         slots.append(fourthSlot)
         slots.append(fifthSlot)
         slots.append(sixthSlot)
+        
+        roundLabel.setTitle("Skip Round", for: .normal)
+        
+        switch iteration{
+        case 1:
+            systemLabel.text = "Facebook"
+            systemLabel.textColor = UIColor.blue
+        
+        case 2:
+            systemLabel.text = "Email"
+            systemLabel.textColor = UIColor.red
+        case 3:
+            systemLabel.text = "Bank Account"
+            systemLabel.textColor = UIColor.green
+        default:
+            systemLabel.text = ""
+        }
         
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+//these two extensions needed for logging to an existing file.
 extension String {
     func appendLineToURL(fileURL: URL) throws {
         try (self + "\n").appendToURL(fileURL: fileURL)
@@ -34,13 +35,14 @@ extension Data {
     }
 }
 
+//init globals
 var start = true
 let UID = "User" + String(format: "%03d", arc4random_uniform(100))
 var passwordArray : [[UIImage]] = []
 var iteration = 0
 
 class ViewController: UIViewController {
-    
+    //all outlets
     @IBOutlet weak var first: UIImageView!
     @IBOutlet weak var second: UIImageView!
     @IBOutlet weak var third: UIImageView!
@@ -108,9 +110,7 @@ class ViewController: UIViewController {
             createWriteDir()
             start = false
         }
-        
-        print(UID)
-        
+                
         firstLabel.text = ""
         secondLabel.text = ""
         thirdLabel.text = ""
@@ -126,7 +126,7 @@ class ViewController: UIViewController {
         
         print("File Path: \(fileURL.path)")
         
-        let tableTitles = "time, UserID, Action, Event\n"
+        let tableTitles = "Time, UserID, System, Action, Event\n"
         do {
             try tableTitles.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
         } catch let error as NSError{
@@ -168,36 +168,67 @@ class ViewController: UIViewController {
     
     func loadEmojis() -> [UIImage]{
         var emojis : [UIImage] = []
-        emojis.append(UIImage(named: "smile-glasses")!)
-        emojis.append(UIImage(named: "tired")!)
-        emojis.append(UIImage(named: "hmm")!)
-        emojis.append(UIImage(named: "heart-eyes")!)
-        emojis.append(UIImage(named: "laughing")!)
-        emojis.append(UIImage(named: "smile-halo")!)
-        emojis.append(UIImage(named: "surprised")!)
-        emojis.append(UIImage(named: "tired")!)
-        emojis.append(UIImage(named: "tongue")!)
-        emojis.append(UIImage(named: "alien")!)
-        emojis.append(UIImage(named: "eggplant")!)
-        emojis.append(UIImage(named: "ghost")!)
-        emojis.append(UIImage(named: "heart")!)
-        emojis.append(UIImage(named: "hotdog")!)
-        emojis.append(UIImage(named: "monkey")!)
-        emojis.append(UIImage(named: "poop")!)
-        emojis.append(UIImage(named: "snake")!)
-        emojis.append(UIImage(named: "peach")!)
-        emojis.append(UIImage(named: "chilli")!)
-        emojis.append(UIImage(named: "sad")!)
-        emojis.append(UIImage(named: "uhoh")!)
-        emojis.append(UIImage(named: "dizzy")!)
-        emojis.append(UIImage(named: "neutral")!)
-        emojis.append(UIImage(named: "secret")!)
-        emojis.append(UIImage(named: "bomb")!)
-        emojis.append(UIImage(named: "fire")!)
-        emojis.append(UIImage(named: "sun")!)
-        emojis.append(UIImage(named: "peace")!)
-        emojis.append(UIImage(named: "money")!)
-        emojis.append(UIImage(named: "mad")!)
+//        emojis.append(UIImage(named: "smile-glasses")!)
+//        emojis.append(UIImage(named: "tired")!)
+//        emojis.append(UIImage(named: "hmm")!)
+//        emojis.append(UIImage(named: "heart-eyes")!)
+//        emojis.append(UIImage(named: "laughing")!)
+//        emojis.append(UIImage(named: "smile-halo")!)
+//        emojis.append(UIImage(named: "surprised")!)
+//        emojis.append(UIImage(named: "tired")!)
+//        emojis.append(UIImage(named: "tongue")!)
+//        emojis.append(UIImage(named: "alien")!)
+//        emojis.append(UIImage(named: "eggplant")!)
+//        emojis.append(UIImage(named: "ghost")!)
+//        emojis.append(UIImage(named: "heart")!)
+//        emojis.append(UIImage(named: "hotdog")!)
+//        emojis.append(UIImage(named: "monkey")!)
+//        emojis.append(UIImage(named: "poop")!)
+//        emojis.append(UIImage(named: "snake")!)
+//        emojis.append(UIImage(named: "peach")!)
+//        emojis.append(UIImage(named: "chilli")!)
+//        emojis.append(UIImage(named: "sad")!)
+//        emojis.append(UIImage(named: "uhoh")!)
+//        emojis.append(UIImage(named: "dizzy")!)
+//        emojis.append(UIImage(named: "neutral")!)
+//        emojis.append(UIImage(named: "secret")!)
+//        emojis.append(UIImage(named: "bomb")!)
+//        emojis.append(UIImage(named: "fire")!)
+//        emojis.append(UIImage(named: "sun")!)
+//        emojis.append(UIImage(named: "peace")!)
+//        emojis.append(UIImage(named: "money")!)
+//        emojis.append(UIImage(named: "mad")!)
+        
+        emojis.append(UIImage(named: "1hunna")!)
+        emojis.append(UIImage(named: "BasketBall")!)
+        emojis.append(UIImage(named: "Bomb")!)
+        emojis.append(UIImage(named: "Burger")!)
+        emojis.append(UIImage(named: "Chilli")!)
+        emojis.append(UIImage(named: "Devil")!)
+        emojis.append(UIImage(named: "Dolphin")!)
+        emojis.append(UIImage(named: "Eggplant")!)
+        emojis.append(UIImage(named: "FireEmoji")!)
+        emojis.append(UIImage(named: "Ghost")!)
+        emojis.append(UIImage(named: "Harambe")!)
+        emojis.append(UIImage(named: "Heart")!)
+        emojis.append(UIImage(named: "Lifting")!)
+        emojis.append(UIImage(named: "LightBulb")!)
+        emojis.append(UIImage(named: "Lion")!)
+        emojis.append(UIImage(named: "Moist")!)
+        emojis.append(UIImage(named: "Money")!)
+        emojis.append(UIImage(named: "Motorcycle")!)
+        emojis.append(UIImage(named: "Peach")!)
+        emojis.append(UIImage(named: "Pizza")!)
+        emojis.append(UIImage(named: "Poop")!)
+        emojis.append(UIImage(named: "RelationshipGoals")!)
+        emojis.append(UIImage(named: "Santa")!)
+        emojis.append(UIImage(named: "Snake")!)
+        emojis.append(UIImage(named: "Snowborder")!)
+        emojis.append(UIImage(named: "SoccerBall")!)
+        emojis.append(UIImage(named: "SpaceInvader")!)
+        emojis.append(UIImage(named: "Sunglasses")!)
+        emojis.append(UIImage(named: "Unicorn")!)
+        emojis.append(UIImage(named: "Watermelone")!)
         
         return emojis
     }
@@ -224,12 +255,16 @@ class ViewController: UIViewController {
         let indexSixth = Int(arc4random_uniform(UInt32(emojis.count)))
         sixth.image = emojis[indexSixth]
         
-        addToLog(message: writeTimeAndDate() + ", " + UID + ", generate n.\(generateCount), success")
+        addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), generate n.\(generateCount), success")
         nextButton.isHidden = false
     }
     
     @IBAction func nextScreen(_ sender: UIButton) {
-        addToLog(message: writeTimeAndDate() + ", " + UID + ", save, success")
+        addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), save, success")
+    }
+    
+    @IBAction func retest(_ sender: UIButton) {
+        addToLog(message: writeTimeAndDate() + ", " + UID + ", general, retest button clicked, success")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

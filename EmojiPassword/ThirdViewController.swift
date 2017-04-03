@@ -66,10 +66,10 @@ class ThirdViewController: UIViewController {
             slots[currSlot].image = sender.currentImage
             currSlot += 1
             
-            addToLog(message: writeTimeAndDate() + ", " + UID + ", emoji clicked, success")
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!) (retest), emoji clicked, success")
         }
         else {
-            addToLog(message: writeTimeAndDate() + ", " + UID + ", emoji clicked, error")
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!) (retest), emoji clicked, error")
         }
     }
     
@@ -77,10 +77,10 @@ class ThirdViewController: UIViewController {
         if currSlot > 0 {
             currSlot -= 1
             slots[currSlot].image = nil
-            addToLog(message: writeTimeAndDate() + ", " + UID + ", deleter char, success")
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!) (retest), deleter char, success")
         }
         else {
-            addToLog(message: writeTimeAndDate() + ", " + UID + ", delete char, error")
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!) (retest), delete char, error")
         }
     }
     
@@ -101,13 +101,13 @@ class ThirdViewController: UIViewController {
                 else{
                     textLabel.text = "Please try again"
                     self.numFails += 1
-                    addToLog(message: writeTimeAndDate() + ", " + UID + ", submit password attempt #\(numFails), error")
+                    addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!) (retest), submit password attempt #\(numFails), error")
                     clear()
                 }
             }
             if count == 6 {
                 textLabel.text = "Correct!!!"
-                addToLog(message: writeTimeAndDate() + ", " + UID + ", submit password, success")
+                addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!) (retest), submit password, success")
                 clear()
                 viewDidLoad()
             }
@@ -115,13 +115,20 @@ class ThirdViewController: UIViewController {
         else {
             self.numFails += 1
             textLabel.text = "Place 6 emojis"
-            addToLog(message: writeTimeAndDate() + ", " + UID + ", submit password attempt #\(numFails), error")
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!) (retest), submit password attempt #\(numFails), error")
         }
     }
     
+    @IBAction func skipRound(_ sender: UIButton) {
+        addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!) (retest), skip round, failed")
+        viewDidLoad()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pass = []
+        slots = []
         
         slots.append(firstSlot)
         slots.append(secondSlot)
@@ -145,6 +152,10 @@ class ThirdViewController: UIViewController {
             pass = passArr[2]
             systemLabel.text = "Facebook"
             systemLabel.textColor = UIColor.blue
+        case 4:
+            systemLabel.text = "Simulation Complete."
+            systemLabel.textColor = UIColor.black
+            addToLog(message: writeTimeAndDate() + ", " + UID + ", general, simulation complete, success")
         default:
             pass = passwordArray[0]
         }
