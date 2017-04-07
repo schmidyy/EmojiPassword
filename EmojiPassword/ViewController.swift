@@ -6,6 +6,8 @@
 //  Copyright © 2017 Mat Schmid. All rights reserved.
 //
 
+// This file contains everything related to the initial loading screen.
+
 import UIKit
 
 //these two extensions needed for logging to an existing file.
@@ -49,14 +51,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var fourth: UIImageView!
     @IBOutlet weak var fifth: UIImageView!
     @IBOutlet weak var sixth: UIImageView!
-    
-    @IBOutlet weak var firstLabel: UILabel!
-    @IBOutlet weak var secondLabel: UILabel!
-    @IBOutlet weak var thirdLabel: UILabel!
-    @IBOutlet weak var fourthLabel: UILabel!
-    @IBOutlet weak var fifthLabel: UILabel!
-    @IBOutlet weak var sixthLabel: UILabel!
-    
+
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var lbl: UILabel!
     
@@ -71,7 +66,7 @@ class ViewController: UIViewController {
     var generateCount = 0
     var password : [UIImage] = []
     
-    
+    //what gets placed to the screen when the page gets loaded
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.isHidden = true
@@ -110,15 +105,9 @@ class ViewController: UIViewController {
             createWriteDir()
             start = false
         }
-                
-        firstLabel.text = ""
-        secondLabel.text = ""
-        thirdLabel.text = ""
-        fourthLabel.text = ""
-        fifthLabel.text = ""
-        sixthLabel.text = ""
     }
     
+    //creates log file
     func createWriteDir(){
         let fileName = "logData"
         let documentDir = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -135,6 +124,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //append to existing log file
     func addToLog(message: String) {
         do {
             let dir: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last! as URL
@@ -148,6 +138,7 @@ class ViewController: UIViewController {
         print(message)
     }
     
+    //get time and date - used in logging
     func writeTimeAndDate() -> String {
         
         //time, userID, mode (action), event
@@ -166,39 +157,10 @@ class ViewController: UIViewController {
         return dateString + " " + timeString
     }
     
+    //initializes all the emojis
     func loadEmojis() -> [UIImage]{
         var emojis : [UIImage] = []
-//        emojis.append(UIImage(named: "smile-glasses")!)
-//        emojis.append(UIImage(named: "tired")!)
-//        emojis.append(UIImage(named: "hmm")!)
-//        emojis.append(UIImage(named: "heart-eyes")!)
-//        emojis.append(UIImage(named: "laughing")!)
-//        emojis.append(UIImage(named: "smile-halo")!)
-//        emojis.append(UIImage(named: "surprised")!)
-//        emojis.append(UIImage(named: "tired")!)
-//        emojis.append(UIImage(named: "tongue")!)
-//        emojis.append(UIImage(named: "alien")!)
-//        emojis.append(UIImage(named: "eggplant")!)
-//        emojis.append(UIImage(named: "ghost")!)
-//        emojis.append(UIImage(named: "heart")!)
-//        emojis.append(UIImage(named: "hotdog")!)
-//        emojis.append(UIImage(named: "monkey")!)
-//        emojis.append(UIImage(named: "poop")!)
-//        emojis.append(UIImage(named: "snake")!)
-//        emojis.append(UIImage(named: "peach")!)
-//        emojis.append(UIImage(named: "chilli")!)
-//        emojis.append(UIImage(named: "sad")!)
-//        emojis.append(UIImage(named: "uhoh")!)
-//        emojis.append(UIImage(named: "dizzy")!)
-//        emojis.append(UIImage(named: "neutral")!)
-//        emojis.append(UIImage(named: "secret")!)
-//        emojis.append(UIImage(named: "bomb")!)
-//        emojis.append(UIImage(named: "fire")!)
-//        emojis.append(UIImage(named: "sun")!)
-//        emojis.append(UIImage(named: "peace")!)
-//        emojis.append(UIImage(named: "money")!)
-//        emojis.append(UIImage(named: "mad")!)
-        
+
         emojis.append(UIImage(named: "1hunna")!)
         emojis.append(UIImage(named: "BasketBall")!)
         emojis.append(UIImage(named: "Bomb")!)
@@ -233,6 +195,7 @@ class ViewController: UIViewController {
         return emojis
     }
     
+    //randomly selects 6 emojis from the pool of 30
     @IBAction func generate() {
     
         var emojis = loadEmojis()
@@ -259,14 +222,17 @@ class ViewController: UIViewController {
         nextButton.isHidden = false
     }
     
+    //"Save Password" log
     @IBAction func nextScreen(_ sender: UIButton) {
         addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!), save, success")
     }
     
+    //"Retest button" log
     @IBAction func retest(_ sender: UIButton) {
         addToLog(message: writeTimeAndDate() + ", " + UID + ", general, retest button clicked, success")
     }
     
+    //Send relevant info over to the second view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.password.append(first.image!)
         self.password.append(second.image!)

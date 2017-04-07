@@ -6,13 +6,15 @@
 //  Copyright © 2017 Mat Schmid. All rights reserved.
 //
 
+// This file contains everything related to the memory retesting screen.
+
 import UIKit
 import GameKit
 
 var iter = 0
 
 class ThirdViewController: UIViewController {
-    
+    //inits
     @IBOutlet weak var firstSlot: UIImageView!
     @IBOutlet weak var secondSlot: UIImageView!
     @IBOutlet weak var thirdSlot: UIImageView!
@@ -25,11 +27,11 @@ class ThirdViewController: UIViewController {
     
     var slots : [UIImageView] = []
     var currSlot: Int = 0
-    //let passArr = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: passwordArray) as! [[UIImage]]
     let passArr:[[UIImage]] = passwordArray.reversed()
     var pass : [UIImage] = []
     var numFails: Int = 0
-
+    
+    //add to log function again
     func addToLog(message: String) {
         do {
             let dir: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last! as URL
@@ -43,6 +45,7 @@ class ThirdViewController: UIViewController {
         print(message)
     }
     
+    //time and date for logging
     func writeTimeAndDate() -> String {
         
         //time, userID, mode (action), event
@@ -61,6 +64,7 @@ class ThirdViewController: UIViewController {
         return dateString + " " + timeString
     }
     
+    //grab the emoji that is clicked on the keyboard and place it on the screen
     @IBAction func emojiClicked(_ sender: UIButton) {
         if currSlot < 6 {
             slots[currSlot].image = sender.currentImage
@@ -73,6 +77,7 @@ class ThirdViewController: UIViewController {
         }
     }
     
+    //backspace functionality
     @IBAction func backspace(_ sender: UIButton) {
         if currSlot > 0 {
             currSlot -= 1
@@ -84,6 +89,7 @@ class ThirdViewController: UIViewController {
         }
     }
     
+    //clear all emojis off the screen
     func clear() {
         for i in slots{
             i.image = nil
@@ -91,6 +97,7 @@ class ThirdViewController: UIViewController {
         currSlot = 0
     }
     
+    //submit button, does all the password checking
     @IBAction func checkPassword(_ sender: UIButton) {
         var count : Int = 0
         if currSlot == 6 {
@@ -119,11 +126,13 @@ class ThirdViewController: UIViewController {
         }
     }
     
+    //next/ skip round buttong
     @IBAction func skipRound(_ sender: UIButton) {
         addToLog(message: writeTimeAndDate() + ", " + UID + ", \(systemLabel.text!) (retest), skip round, failed")
         viewDidLoad()
     }
     
+    //what gets shown on the screen when it is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
         
